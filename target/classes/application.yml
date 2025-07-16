@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: elf
+  profiles:
+    active: test
+    
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+
+jwt:
+  secret: A9!kD3@xLzQw2#sVtYp4$gHrJmNf6*eB
+  expirationMs: 86400000

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="MyContext" targetRuntime="MyBatis3">
+    <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                    connectionURL="jdbc:sqlserver://192.168.20.131:1433;databaseName=AIRSET;encrypt=true;trustServerCertificate=true"
+                    userId="sa"
+                    password="Sql@admin" />
+
+    <javaModelGenerator targetPackage="tw.com.elf.model" targetProject="src/main/java"/>
+    <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+    <javaClientGenerator type="XMLMAPPER" targetPackage="tw.com.elf.mapper" targetProject="src/main/java"/>
+
+    <table tableName="AIR0客戶" domainObjectName="Airset" />
+  </context>
+</generatorConfiguration>

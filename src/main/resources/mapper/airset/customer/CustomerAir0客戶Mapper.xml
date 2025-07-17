@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tw.com.elf.mapper.airset.customerMapper.CustomerAir0客戶Mapper">
+  <resultMap id="BaseResultMap" type="tw.com.elf.model.airset.Air0客戶">
+    <id column="EMAIL" jdbcType="NVARCHAR" property="email" />
+    <result column="姓名" jdbcType="NVARCHAR" property="姓名" />
+    <result column="性別" jdbcType="CHAR" property="性別" />
+    <result column="身分證字號" jdbcType="NVARCHAR" property="身分證字號" />
+    <result column="郵遞區號" jdbcType="CHAR" property="郵遞區號" />
+    <result column="縣市鄉鎮" jdbcType="NVARCHAR" property="縣市鄉鎮" />
+    <result column="地址" jdbcType="NVARCHAR" property="地址" />
+    <result column="聯絡電話" jdbcType="NVARCHAR" property="聯絡電話" />
+    <result column="手機" jdbcType="NVARCHAR" property="手機" />
+    <result column="支付寶帳號" jdbcType="NVARCHAR" property="支付寶帳號" />
+    <result column="支付寶姓名" jdbcType="NVARCHAR" property="支付寶姓名" />
+    <result column="入會時間" jdbcType="TIMESTAMP" property="入會時間" />
+    <result column="密碼" jdbcType="NVARCHAR" property="密碼" />
+    <result column="公司名稱" jdbcType="NVARCHAR" property="公司名稱" />
+    <result column="統一編號" jdbcType="NVARCHAR" property="統一編號" />
+    <result column="出生日期" jdbcType="TIMESTAMP" property="出生日期" />
+    <result column="認證" jdbcType="BIT" property="認證" />
+    <result column="聯絡人" jdbcType="NVARCHAR" property="聯絡人" />
+    <result column="會員種類" jdbcType="NVARCHAR" property="會員種類" />
+    <result column="控制" jdbcType="BIT" property="控制" />
+    <result column="密碼MD5" jdbcType="NVARCHAR" property="密碼md5" />
+    <result column="英文姓名" jdbcType="NVARCHAR" property="英文姓名" />
+    <result column="英文地址" jdbcType="NVARCHAR" property="英文地址" />
+    <result column="入倉代號" jdbcType="CHAR" property="入倉代號" />
+    <result column="入倉名稱" jdbcType="CHAR" property="入倉名稱" />
+    <result column="國家" jdbcType="INTEGER" property="國家" />
+    <result column="渠道" jdbcType="NVARCHAR" property="渠道" />
+    <result column="載具明碼" jdbcType="NVARCHAR" property="載具明碼" />
+    <result column="載具隱碼" jdbcType="NVARCHAR" property="載具隱碼" />
+    <result column="載具歸戶狀態" jdbcType="NVARCHAR" property="載具歸戶狀態" />
+    <result column="公司驗證" jdbcType="INTEGER" property="公司驗證" />
+    <result column="公司驗證時間" jdbcType="TIMESTAMP" property="公司驗證時間" />
+    <result column="驗證" jdbcType="BIT" property="驗證" />
+    <result column="驗證時間" jdbcType="TIMESTAMP" property="驗證時間" />
+    <result column="驗證姓名" jdbcType="NVARCHAR" property="驗證姓名" />
+    <result column="驗證資訊" jdbcType="NVARCHAR" property="驗證資訊" />
+    <result column="暱稱" jdbcType="NVARCHAR" property="暱稱" />
+    <result column="ID" jdbcType="NVARCHAR" property="id" />
+    <result column="鎖定" jdbcType="INTEGER" property="鎖定" />
+  </resultMap>
+  
+  <select id="countByIdNumberOrMobile" parameterType="map" resultType="java.lang.Integer">
+    select count(*) from AIR0客戶
+	  <where>
+	    <if test="idNumber != null">
+	      身分證字號 = #{idNumber}
+	    </if>
+	    <if test="mobile != null">
+	      <if test="idNumber != null">
+	        OR 手機 = #{mobile}
+	      </if>
+	    </if>
+	  </where>
+  </select>
+  
+
+</mapper>

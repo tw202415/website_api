@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tw.com.elf.mapper.airshop.customerMapper.CustomerProductsMapper">
+  <resultMap id="BaseResultMap" type="tw.com.elf.model.airshop.customer.Products">
+    <id column="PRODUCT_ID" jdbcType="INTEGER" property="productId" />
+    <result column="NAME" jdbcType="NVARCHAR" property="name" />
+    <result column="DESCRIPTION" jdbcType="NVARCHAR" property="description" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="DISCOUNT_PRICE" jdbcType="DECIMAL" property="discountPrice" />
+    <result column="RATING_AVG" jdbcType="DECIMAL" property="ratingAvg" />
+    <result column="REVIEW_COUNT" jdbcType="INTEGER" property="reviewCount" />
+    <result column="STOCK_QUANTITY" jdbcType="INTEGER" property="stockQuantity" />
+    <result column="CATEGORY_ID" jdbcType="INTEGER" property="categoryId" />
+    <result column="BRAND_ID" jdbcType="INTEGER" property="brandId" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="CATEGORY_NAME" jdbcType="NVARCHAR" property="categoryName" />
+    <result column="IMAGE_URL" jdbcType="NVARCHAR" property="imageUrl" />
+  </resultMap>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select 
+  	 p.*,
+  	 c.NAME as CATEGORY_NAME,
+  	 pi.IMAGE_URL
+  	from PRODUCTS p
+  	join CATEGORIES c on c.CATEGORY_ID = p.CATEGORY_ID
+  	join PRODUCT_IMAGES pi on pi.PRODUCT_ID = p.PRODUCT_ID
+  </select>
+</mapper>

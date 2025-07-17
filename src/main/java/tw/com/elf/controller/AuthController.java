@@ -47,11 +47,28 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponse(jwt));
     }
     
+    /**
+     * 註冊
+     * @param registerRequest
+     * @return
+     */
     @PostMapping("/register")
     public ResponseEntity<Response<Object>> register(@RequestBody RegisterRequest registerRequest) {
     	
     	System.err.println(registerRequest.getEmail());
     	System.err.println(registerRequest.getPassword());
+    	return ResponseEntity.ok(registerService.register(registerRequest));
+
+    }
+    
+    /**
+     * google驗證
+     * @param registerRequest
+     * @return
+     */
+    @PostMapping("/google")
+    public ResponseEntity<Response<Object>> google(@RequestBody RegisterRequest registerRequest) {
+    	
     	return ResponseEntity.ok(registerService.register(registerRequest));
 
     }

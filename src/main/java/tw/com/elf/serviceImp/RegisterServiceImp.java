@@ -8,9 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import tw.com.elf.dao.RegisterRequest;
 import tw.com.elf.dao.Response;
-import tw.com.elf.mapper.AirsetMapper;
-import tw.com.elf.mapper.customerMapper.CustomerAirsetMapper;
-import tw.com.elf.model.Airset;
+import tw.com.elf.mapper.airset.Air0客戶Mapper;
+import tw.com.elf.mapper.airset.customerMapper.CustomerAir0客戶Mapper;
+import tw.com.elf.model.airset.Air0客戶;
 import tw.com.elf.service.RegisterService;
 import tw.com.elf.utils.TimeUtil;
 
@@ -19,44 +19,34 @@ import tw.com.elf.utils.TimeUtil;
 public class RegisterServiceImp implements RegisterService{
 	
 	@Autowired
-	private AirsetMapper airsetMapper;
+	private Air0客戶Mapper air0客戶Mapper;
 	
 	@Autowired
-	private CustomerAirsetMapper customerAirsetMapper;
+	private CustomerAir0客戶Mapper customerAir0客戶Mapper;
 
 	@Override
 	@Transactional
 	public Response<Object> register(RegisterRequest registerRequest) {
 		Response<Object> res = new Response<>();
 		try {
-			int result = customerAirsetMapper.countByIdNumberOrMobile(registerRequest.getIdNumber(), registerRequest.getMobile());
+			int result = customerAir0客戶Mapper.countByIdNumberOrMobile(registerRequest.getIdNumber(), registerRequest.getMobile());
 			if (result > 0) {
-				res.setCode("002");
-				res.setMsg("身分證、手機已註冊");
-				return res;
+				return Response.error("002", "身分證、手機已註冊");
 			}
-			airsetMapper.insertSelective(requestToAirset(registerRequest));
+			air0客戶Mapper.insertSelective(requestToAirset(registerRequest));
 			
-			res.setCode("200");
-			res.setMsg("success");
-			return res;
+			return Response.success(null);
 		} catch(DuplicateKeyException e) {
 			log.error("信箱已註冊過: {}", e);
-			res.setCode("001");
-			res.setMsg("信箱已註冊過");
-			return res;
+			return Response.error("001", "信箱已註冊過");
 		} catch(Exception e) {
 			log.error("註冊會員資料失敗: {}", e);
-			res.setCode("999");
-			res.setMsg("註冊會員資料失敗");
-			return res;
+			return Response.error("999", "註冊會員資料失敗");
 		} 
-		
-		
 	}
 	
-	private Airset requestToAirset(RegisterRequest registerRequest) {
-		Airset result = new Airset();
+	private Air0客戶 requestToAirset(RegisterRequest registerRequest) {
+		Air0客戶 result = new Air0客戶();
 		result.setEmail(registerRequest.getEmail());
 		result.set姓名(registerRequest.getName());
 		result.set出生日期(TimeUtil.strToDate(registerRequest.getBirthYear(), registerRequest.getBirthMonth(), registerRequest.getBirthDay()));

@@ -36,7 +36,7 @@ public class SecurityConfig {
                 var config = new CorsConfiguration();
                 config.setAllowedOrigins(List.of("http://localhost:5173", "https://new-web.elf.tw"));
                 config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                config.setAllowedHeaders(List.of("Content-Type\", \"Authorization\", \"X-Requested-With"));
+                config.setAllowedHeaders(List.of("Content-Type", "Authorization", "X-Requested-With"));
                 config.setAllowCredentials(true);
                 return config;
 	            })

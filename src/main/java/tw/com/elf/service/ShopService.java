@@ -1,9 +1,10 @@
 package tw.com.elf.service;
 
 import tw.com.elf.dao.Response;
+import tw.com.elf.dao.ShopRequest;
 
 public interface ShopService {
 	
-	public <T> Response<T> getProducts(String country); 
+	public <T> Response<T> getProducts(ShopRequest shopRequest); 
 
 }

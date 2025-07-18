@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import tw.com.elf.dao.ShopRequest;
 import tw.com.elf.model.airshop.customer.Products;
 
 @Mapper
 public interface CustomerProductsMapper {
 	
-	List<Products> selectAll();
+	List<Products> query(ShopRequest shopRequest);
+	
 }

@@ -17,12 +17,15 @@ public class ShoppingController {
     @Autowired
     private ShopService shopService;
 
+    /**
+     * 查詢 
+     * @param shopRequest
+     * @return
+     */
     @PostMapping("/products")
-    public ResponseEntity<?> authenticateUser(@RequestBody ShopRequest shopRequest) {
+    public ResponseEntity<?> getProductsByCategoryId(@RequestBody ShopRequest shopRequest) {
     	
-    	System.err.println(shopRequest.getCountry());
-
-        return ResponseEntity.ok(shopService.getProducts(shopRequest.getCountry()));
+        return ResponseEntity.ok(shopService.getProducts(shopRequest));
     }
     
 }

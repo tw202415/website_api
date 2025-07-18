@@ -32,9 +32,15 @@ public class Products {
     
     private Date updatedAt;
     
+    private Integer purchaseCount; 
+    
     private String categoryName;
     
     private String imageUrl;
+    
+    private Boolean isHot;
+    
+    private Boolean is24hshipping;
 
     
 }

@@ -14,11 +14,14 @@
     <result column="BRAND_ID" jdbcType="INTEGER" property="brandId" />
     <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="PURCHASE_COUNT" jdbcType="INTEGER" property="purchaseCount" />
     <result column="CATEGORY_NAME" jdbcType="NVARCHAR" property="categoryName" />
     <result column="IMAGE_URL" jdbcType="NVARCHAR" property="imageUrl" />
+    <result column="IS_HOT" jdbcType="BIT" property="isHot" />
+    <result column="IS_24HSHIPPING" jdbcType="BIT" property="is24hshipping" />
   </resultMap>
   
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="query" resultMap="BaseResultMap" parameterType="map">
   	select 
   	 p.*,
   	 c.NAME as CATEGORY_NAME,
@@ -26,5 +29,14 @@
   	from PRODUCTS p
   	join CATEGORIES c on c.CATEGORY_ID = p.CATEGORY_ID
   	join PRODUCT_IMAGES pi on pi.PRODUCT_ID = p.PRODUCT_ID
-  </select>
+  	<where>
+  	  <if test="name != null and name != ''">
+        p.NAME LIKE CONCAT('%', #{name}, '%')
+      </if>
+      <if test="categoryId != null and categoryId != ''">
+        p.CATEGORY_ID = #{categoryId} 
+      </if>
+    </where> 
+  	</select>
+
 </mapper>

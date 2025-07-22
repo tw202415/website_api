@@ -28,6 +28,10 @@ public class AirsetDataSourceConfig  {
     	SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/airset/**/*.xml"));
+        org.apache.ibatis.session.Configuration mybatisConfig = new org.apache.ibatis.session.Configuration();
+        mybatisConfig.setLogImpl(org.apache.ibatis.logging.stdout.StdOutImpl.class);
+        bean.setConfiguration(mybatisConfig);
+        
         return bean.getObject();
     }
 

@@ -30,13 +30,29 @@
   	join CATEGORIES c on c.CATEGORY_ID = p.CATEGORY_ID
   	join PRODUCT_IMAGES pi on pi.PRODUCT_ID = p.PRODUCT_ID
   	<where>
-  	  <if test="name != null and name != ''">
-        p.NAME LIKE CONCAT('%', #{name}, '%')
+  	  <if test="shopRequest.name != null and shopRequest.name != ''">
+        p.NAME LIKE CONCAT('%', #{shopRequest.name}, '%')
       </if>
-      <if test="categoryId != null and categoryId != ''">
-        p.CATEGORY_ID = #{categoryId} 
+      <if test="shopRequest.categoryId != null and shopRequest.categoryId != ''">
+        p.CATEGORY_ID = #{shopRequest.categoryId} 
       </if>
     </where> 
+    order by p.CREATED_AT DESC
+    OFFSET #{offset} ROWS
+  	FETCH NEXT #{limit} ROWS ONLY
   	</select>
-
+  	
+  	<select id="getDetail" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+  	 p.*,
+  	 c.NAME as CATEGORY_NAME,
+  	 pi.IMAGE_URL
+  	from PRODUCTS p
+  	join CATEGORIES c on c.CATEGORY_ID = p.CATEGORY_ID
+  	join PRODUCT_IMAGES pi on pi.PRODUCT_ID = p.PRODUCT_ID
+  	<where>
+  	  p.PRODUCT_ID = #{productId}
+    </where> 
+  	</select>
+  	
 </mapper>

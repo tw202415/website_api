@@ -41,6 +41,5 @@ public class Products {
     private Boolean isHot;
     
     private Boolean is24hshipping;
-
     
 }

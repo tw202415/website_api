@@ -13,6 +13,6 @@
     <sqlMapGenerator targetPackage="mapper.airshop" targetProject="src/main/resources"/>
     <javaClientGenerator type="XMLMAPPER" targetPackage="tw.com.elf.mapper.airshop" targetProject="src/main/java"/>
 
-    <table tableName="PRODUCTS" domainObjectName="Products" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" enableCountByExample="false" />
+    <table tableName="REVIEWS" domainObjectName="Reviews" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" enableCountByExample="false" />
   </context>
 </generatorConfiguration>

@@ -10,5 +10,9 @@ public class ShopRequest {
 	private Integer categoryId;
 	
 	private String name;
+	
+	private Integer page;
+	
+	private Integer size;
 
 }

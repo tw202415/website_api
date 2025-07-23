@@ -13,7 +13,7 @@ import tw.com.elf.dao.ShopRequest;
 import tw.com.elf.service.ShopService;
 
 @RestController
-@RequestMapping("/api/shop")
+@RequestMapping("/api2/shop")
 public class ShoppingController {
 
     @Autowired
